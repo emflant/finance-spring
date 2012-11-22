@@ -10,4 +10,9 @@ public class A02InquiryAccountDetail implements EntScreen {
 		return "A02InquiryAccountDetail screen.";
 	}
 
+	public void initScreen() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

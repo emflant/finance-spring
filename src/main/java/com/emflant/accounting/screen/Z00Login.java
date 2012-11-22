@@ -20,7 +20,9 @@ import org.springframework.stereotype.Component;
 public class Z00Login {
 	
 	private static final Logger logger = Logger.getLogger(Z00Login.class);
-	private JFrame frame;
+	
+	@Autowired
+	private JFrame mainFrame;
 	
 	@Autowired @Qualifier("a01RegisterAccount")
 	private EntScreen a01;
@@ -30,7 +32,7 @@ public class Z00Login {
 	
 	public void init(){
 		//logger.info("기본화면 셋팅."+a01);
-		this.frame = new JFrame();
+		//this.frame = new JFrame();
 		
 		JMenuBar mb = new JMenuBar();
 		JMenu screen = new JMenu("Account");
@@ -46,10 +48,10 @@ public class Z00Login {
 
 		mb.add(screen);
 		
-		this.frame.setJMenuBar(mb);
-		this.frame.addWindowListener(new FrameWindowListener());
-		this.frame.setSize(800, 600);
-		this.frame.setVisible(true);
+		this.mainFrame.setJMenuBar(mb);
+		this.mainFrame.addWindowListener(new FrameWindowListener());
+		this.mainFrame.setSize(800, 600);
+		this.mainFrame.setVisible(true);
 		
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -69,6 +71,7 @@ public class Z00Login {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			logger.info(screen.display());
+			screen.initScreen();
 		}
 		
 	}
