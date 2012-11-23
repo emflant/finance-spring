@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +25,12 @@ import com.emflant.accounting.screen.component.EntJTextFieldForRemarks;
 @Component
 public class A01RegisterAccount implements EntScreen {
 	
+	private static final Logger logger = Logger.getLogger(A01RegisterAccount.class);
+	
 	@Autowired
 	private JFrame mainFrame;
+	@Autowired
+	private SqlSession session;
 	
 	private JPanel northPanel;
 	private JPanel panel1;
@@ -47,6 +53,7 @@ public class A01RegisterAccount implements EntScreen {
 	
 	public void initScreen()
 	{
+		logger.info("session : "+session);
 		
 		this.northPanel = new JPanel();
 		this.northPanel.setLayout(new BoxLayout(this.northPanel, BoxLayout.Y_AXIS));
@@ -99,11 +106,11 @@ public class A01RegisterAccount implements EntScreen {
 		//this.tbAccountList.getSelectionModel().addListSelectionListener(new TableSelectionListener());
 
 
-		this.tbAccountList.entAddTableHeader("account_type_nm", "", JLabel.CENTER, 50);
-		this.tbAccountList.entAddTableHeader("remarks", "", JLabel.LEFT, 300);
-		this.tbAccountList.entAddTableHeader("format_new_date", "", JLabel.CENTER, 80);
-		this.tbAccountList.entAddTableHeader("account_status_nm", "", JLabel.CENTER, 50);
-		this.tbAccountList.entAddTableHeader("format_balance", "", JLabel.RIGHT, 100);
+		this.tbAccountList.entAddTableHeader("account_type_nm", "계좌유형", JLabel.CENTER, 50);
+		this.tbAccountList.entAddTableHeader("remarks", "적요", JLabel.LEFT, 300);
+		this.tbAccountList.entAddTableHeader("format_new_date", "신규일자", JLabel.CENTER, 80);
+		this.tbAccountList.entAddTableHeader("account_status_nm", "상태", JLabel.CENTER, 50);
+		this.tbAccountList.entAddTableHeader("format_balance", "잔액", JLabel.RIGHT, 100);
 		
 		
 		

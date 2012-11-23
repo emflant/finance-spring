@@ -19,20 +19,30 @@ public class EntJTable extends JTable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<EntTableHeader> tableHeaders;
+	private TableColumnModel tableColumnModel;
 	
 	public EntJTable(){
 		this.tableHeaders = new ArrayList<EntTableHeader>(20);
 		this.setFocusable(false);
+		this.tableColumnModel = new DefaultTableColumnModel();
+		this.setColumnModel(tableColumnModel);
 	}
 	
-	
-	
-	public void entAddTableHeader(EntTableHeader entTableHeader){
-		this.tableHeaders.add(entTableHeader);
-	}
 	
 	public void entAddTableHeader(String identifier, String headerValue, int align, int width){
 		this.tableHeaders.add(new EntTableHeader(identifier, headerValue, align, width));
+		
+		TableColumn tableColumn = new TableColumn();
+		tableColumn.setIdentifier(identifier);
+		tableColumn.setHeaderValue(headerValue);
+		tableColumn.setPreferredWidth(width);
+		
+		DefaultTableCellRenderer defaultTableCellRenderer = new DefaultTableCellRenderer();
+		defaultTableCellRenderer.setHorizontalAlignment(align);
+		tableColumn.setCellRenderer(defaultTableCellRenderer);
+		
+		this.tableColumnModel.addColumn(tableColumn);
+		
 	}
 	
 	public void entAddCheckBoxTableHeader(String identifier, String headerValue, int align, int width){

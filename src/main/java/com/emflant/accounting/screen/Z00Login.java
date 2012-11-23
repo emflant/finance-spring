@@ -21,8 +21,8 @@ public class Z00Login {
 	
 	private static final Logger logger = Logger.getLogger(Z00Login.class);
 	
-	@Autowired
-	private JFrame mainFrame;
+	@Autowired @Qualifier("mainFrame")
+	private JFrame frame;
 	
 	@Autowired @Qualifier("a01RegisterAccount")
 	private EntScreen a01;
@@ -48,10 +48,10 @@ public class Z00Login {
 
 		mb.add(screen);
 		
-		this.mainFrame.setJMenuBar(mb);
-		this.mainFrame.addWindowListener(new FrameWindowListener());
-		this.mainFrame.setSize(800, 600);
-		this.mainFrame.setVisible(true);
+		this.frame.setJMenuBar(mb);
+		this.frame.addWindowListener(new FrameWindowListener());
+		this.frame.setSize(800, 600);
+		this.frame.setVisible(true);
 		
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -69,7 +69,6 @@ public class Z00Login {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 			logger.info(screen.display());
 			screen.initScreen();
 		}
@@ -80,39 +79,33 @@ public class Z00Login {
 	class FrameWindowListener implements WindowListener {
 
 		public void windowActivated(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void windowClosed(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void windowClosing(WindowEvent arg0) {
-			// TODO Auto-generated method stub
+			logger.info("Exit Program.");
 			arg0.getWindow().setVisible(false);
 			arg0.getWindow().dispose();
 			System.exit(0);
 		}
 
 		public void windowDeactivated(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void windowDeiconified(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void windowIconified(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void windowOpened(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 		
