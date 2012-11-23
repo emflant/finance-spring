@@ -13,12 +13,12 @@ import javax.swing.JScrollPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.emflant.accounting.main.component.EntJButton;
-import com.emflant.accounting.main.component.EntJComboBox;
-import com.emflant.accounting.main.component.EntJTable;
-import com.emflant.accounting.main.component.EntJTextFieldForAmount;
-import com.emflant.accounting.main.component.EntJTextFieldForDate;
-import com.emflant.accounting.main.component.EntJTextFieldForRemarks;
+import com.emflant.accounting.screen.component.EntJButton;
+import com.emflant.accounting.screen.component.EntJComboBox;
+import com.emflant.accounting.screen.component.EntJTable;
+import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
+import com.emflant.accounting.screen.component.EntJTextFieldForDate;
+import com.emflant.accounting.screen.component.EntJTextFieldForRemarks;
 
 @Component
 public class A01RegisterAccount implements EntScreen {
@@ -68,10 +68,10 @@ public class A01RegisterAccount implements EntScreen {
 		//this.tfUserId.setColumns(5);
 		//this.tfUserId.setText(this.userId);
 		
-		//this.lbRemarks = new JLabel("���");
+		//this.lbRemarks = new JLabel("적요");
 		this.tfRemarks = new EntJTextFieldForRemarks();
 		
-		//this.lbAccountType = new JLabel("��������");
+		//this.lbAccountType = new JLabel("계좌유형");
 		this.cbAccountType = new EntJComboBox();
 		
 		
