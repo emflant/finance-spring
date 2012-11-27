@@ -9,12 +9,24 @@
 
 	<bean name="mainFrame" class="javax.swing.JFrame"></bean>
 	
+	<!--  MY-SQL 일때 -->
 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
 	    <property name="driver" value="com.mysql.jdbc.Driver" />
 	    <property name="url" value="jdbc:mysql://localhost/world" />
 	    <property name="username" value="root" />
 	    <property name="password" value="adminadmin" />
 	</bean>
+	
+	
+	<!--  MS-SQL 일때
+	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+		<property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=Northwind" />
+		<property name="username" value="" />
+		<property name="password" value="" />
+	</bean>
+	-->
+	
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />

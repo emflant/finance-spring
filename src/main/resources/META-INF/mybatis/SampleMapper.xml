@@ -4,6 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="SqlSampleMapper">
+
+
+    <select id="selectSampleMsSql" parameterType="java.util.HashMap"
+            resultType="java.util.HashMap">
+        select *
+        from nfis_dep..TB_DCP0001M
+        where org_cd = 'TYB'
+        and   acct_sys_no = '001110000016'
+    </select>
   
     <select id="selectSample" parameterType="java.util.HashMap"
             resultType="java.util.HashMap">

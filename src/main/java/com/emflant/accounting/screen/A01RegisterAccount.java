@@ -3,6 +3,7 @@ package com.emflant.accounting.screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -53,7 +54,9 @@ public class A01RegisterAccount implements EntScreen {
 	
 	public void initScreen()
 	{
-		logger.info("session : "+session);
+		//logger.info("session : "+session);
+		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
+		//logger.info("result : "+hm);
 		
 		this.northPanel = new JPanel();
 		this.northPanel.setLayout(new BoxLayout(this.northPanel, BoxLayout.Y_AXIS));
