@@ -3,15 +3,12 @@ package com.emflant.accounting.screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.util.HashMap;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,11 +27,9 @@ public class A01RegisterAccount implements EntScreen {
 	
 	@Autowired
 	private JFrame mainFrame;
-	@Autowired
-	private SqlSession session;
+	//@Autowired
+	//private SqlSession session;
 	
-	private JPanel northPanel;
-	private JPanel panel1;
 
 	private JPanel centerPanel;
 	private JPanel southPanel;
@@ -48,23 +43,44 @@ public class A01RegisterAccount implements EntScreen {
 	private JLabel lbNewDate;
 	private EntJTextFieldForDate tfNewDate;
 	
-	//private JButton btnSearch;
 	private EntJButton btnInsert;
 	private EntJTable tbAccountList;
+	
+	private String testwe;
+	
+	
+	public A01RegisterAccount(){
+		logger.info("constructor");
+
+	}
+
 	
 	public void initScreen()
 	{
 		//logger.info("session : "+session);
 		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
-		//logger.info("result : "+hm);
+		//logger.info("result : "+this.tbAccountList);
+		logger.info("call initScreen : "+testwe);
 		
-		this.northPanel = new JPanel();
-		this.northPanel.setLayout(new BoxLayout(this.northPanel, BoxLayout.Y_AXIS));
 		
-		this.panel1 = new JPanel();
-		this.panel1.setBackground(Color.WHITE);
-		this.panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+		this.tfRemarks = new EntJTextFieldForRemarks();
+		this.cbAccountType = new EntJComboBox();
+		this.lbAmount = new JLabel("금액");
+		this.tfAmount = new EntJTextFieldForAmount(7);
+		this.lbCashAmount = new JLabel("현금");
+		this.tfCashAmount = new EntJTextFieldForAmount(7);
+		this.lbNewDate = new JLabel("신규일자");
+		this.tfNewDate = new EntJTextFieldForDate();
+		this.btnInsert = new EntJButton("등록");
+		
+		this.tbAccountList = new EntJTable();
+		this.tbAccountList.entAddTableHeader("account_type_nm", "계좌유형", JLabel.CENTER, 50);
+		this.tbAccountList.entAddTableHeader("remarks", "적요", JLabel.LEFT, 300);
+		this.tbAccountList.entAddTableHeader("format_new_date", "신규일자", JLabel.CENTER, 80);
+		this.tbAccountList.entAddTableHeader("account_status_nm", "상태", JLabel.CENTER, 50);
+		this.tbAccountList.entAddTableHeader("format_balance", "잔액", JLabel.RIGHT, 100);
+		
 		this.centerPanel = new JPanel();
 		this.centerPanel.setBackground(Color.WHITE);
 		this.centerPanel.setLayout(new BorderLayout());
@@ -73,83 +89,21 @@ public class A01RegisterAccount implements EntScreen {
 		this.southPanel.setBackground(Color.WHITE);
 		this.southPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		//this.lbUserId = new JLabel("User ID");
-		//this.tfUserId = new JTextField();
-		//this.tfUserId.setColumns(5);
-		//this.tfUserId.setText(this.userId);
-		
-		//this.lbRemarks = new JLabel("적요");
-		this.tfRemarks = new EntJTextFieldForRemarks();
-		
-		//this.lbAccountType = new JLabel("계좌유형");
-		this.cbAccountType = new EntJComboBox();
-		
-		
-		this.lbAmount = new JLabel("금액");
-		this.tfAmount = new EntJTextFieldForAmount(7);
-		
-		this.lbCashAmount = new JLabel("현금");
-		this.tfCashAmount = new EntJTextFieldForAmount(7);
-		
-		this.lbNewDate = new JLabel("신규일자");
-		this.tfNewDate = new EntJTextFieldForDate();
-		
-		this.btnInsert = new EntJButton("등록");
-		
-		//this.btnInsert.addActionListener(new InsertButtonListener());
-
-
-		//this.btnInsert.setEnabled(false);
-		//this.btnUpdate.setEnabled(false);
-		//this.btnDelete.setEnabled(false);
-
-		
-
-		this.tbAccountList = new EntJTable();
-		//this.tbAccountList.getSelectionModel().addListSelectionListener(new TableSelectionListener());
-
-
-		this.tbAccountList.entAddTableHeader("account_type_nm", "계좌유형", JLabel.CENTER, 50);
-		this.tbAccountList.entAddTableHeader("remarks", "적요", JLabel.LEFT, 300);
-		this.tbAccountList.entAddTableHeader("format_new_date", "신규일자", JLabel.CENTER, 80);
-		this.tbAccountList.entAddTableHeader("account_status_nm", "상태", JLabel.CENTER, 50);
-		this.tbAccountList.entAddTableHeader("format_balance", "잔액", JLabel.RIGHT, 100);
-		
-		
-		
-		//this.panel1.add(lbUserId);
-		//this.panel1.add(tfUserId);
-		//this.panel1.add(lbAccountType);
-		
-
-
-
-		//this.northPanel.add(panel1);
-
 		this.southPanel.add(cbAccountType);
-		//this.southPanel.add(lbRemarks);
-		//this.southPanel.add(tfRemarks);
 		tfRemarks.addPanel(this.southPanel);
 		this.southPanel.add(lbNewDate);
-		//this.southPanel.add(tfNewDate);
 		tfNewDate.addPanel(this.southPanel);
 		this.southPanel.add(lbAmount);
-		//this.southPanel.add(tfAmount);
 		tfAmount.addPanel(this.southPanel);
+		
 		this.southPanel.add(lbCashAmount);
 		tfCashAmount.addPanel(this.southPanel);
-		//this.southPanel.add(btnSearch);
-		//this.southPanel.add(btnInsert);
 		btnInsert.addPanel(this.southPanel);
-		//this.southPanel.add(btnUpdate);
-		//this.southPanel.add(btnDelete);
+		
 		this.centerPanel.add(BorderLayout.CENTER, new JScrollPane(tbAccountList));
 		
-		//this.frame.getContentPane().add(BorderLayout.NORTH, this.northPanel);
 		this.mainFrame.getContentPane().add(BorderLayout.SOUTH, this.southPanel);
 		this.mainFrame.getContentPane().add(centerPanel, BorderLayout.CENTER);
-
-		
 		
 	}
 	

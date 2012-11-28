@@ -1,5 +1,6 @@
 package com.emflant.accounting.screen;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -33,6 +34,16 @@ public class Z00Login {
 	public void init(){
 		//logger.info("기본화면 셋팅."+a01);
 		//this.frame = new JFrame();
+		logger.info("skdlfsdjkl");
+		try { 
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			logger.info(UIManager.getSystemLookAndFeelClassName());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		JMenuBar mb = new JMenuBar();
 		JMenu screen = new JMenu("Account");
@@ -53,11 +64,6 @@ public class Z00Login {
 		this.frame.setSize(800, 600);
 		this.frame.setVisible(true);
 		
-		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
 	}
 	
 	class MenuItemListener implements ActionListener {
@@ -69,6 +75,10 @@ public class Z00Login {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
+			
+			frame.getContentPane().removeAll();
+			
+			//logger.info("==================");
 			logger.info(screen.display());
 			screen.initScreen();
 		}
