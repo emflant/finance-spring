@@ -1,3 +1,5 @@
+import javax.swing.UIManager;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,10 +12,21 @@ public class ZExecute {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		try { 
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		String configLocation = "META-INF/spring/app-context.xml";
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 		Z00Login zz = (Z00Login)context.getBean("z00Login");
+		
+
 		zz.init();
 	}
 

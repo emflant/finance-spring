@@ -1,6 +1,5 @@
 package com.emflant.accounting.screen;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -10,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.UIManager;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +33,7 @@ public class Z00Login {
 		//logger.info("기본화면 셋팅."+a01);
 		//this.frame = new JFrame();
 		logger.info("skdlfsdjkl");
-		try { 
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			logger.info(UIManager.getSystemLookAndFeelClassName());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		JMenuBar mb = new JMenuBar();
 		JMenu screen = new JMenu("Account");
@@ -77,10 +67,10 @@ public class Z00Login {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			frame.getContentPane().removeAll();
-			
-			//logger.info("==================");
 			logger.info(screen.display());
 			screen.initScreen();
+			frame.setVisible(true);
+			frame.getContentPane().repaint();
 		}
 		
 	}

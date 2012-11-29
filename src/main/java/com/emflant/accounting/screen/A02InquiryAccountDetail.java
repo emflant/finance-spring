@@ -49,13 +49,7 @@ public class A02InquiryAccountDetail implements EntScreen {
 	private EntJTable tbAccountList;
 	
 	
-	public String display() {
-		// TODO Auto-generated method stub
-		return "A02InquiryAccountDetail screen.";
-	}
-
-	public void initScreen()
-	{
+	public A02InquiryAccountDetail(){
 		//logger.info("session : "+session);
 		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
 		//logger.info("result : "+this.tbAccountList);
@@ -63,15 +57,15 @@ public class A02InquiryAccountDetail implements EntScreen {
 		
 		
 
-		this.tfRemarks = new EntJTextFieldForRemarks();
+		//this.tfRemarks = new EntJTextFieldForRemarks();
 		this.cbAccountType = new JComboBox();
 		this.lbAmount = new JLabel("금액");
-		this.tfAmount = new EntJTextFieldForAmount(7);
+		//this.tfAmount = new EntJTextFieldForAmount(7);
 		this.lbCashAmount = new JLabel("현금");
-		this.tfCashAmount = new EntJTextFieldForAmount(7);
+		//this.tfCashAmount = new EntJTextFieldForAmount(7);
 		this.lbNewDate = new JLabel("신규일자");
-		this.tfNewDate = new EntJTextFieldForDate();
-		this.btnInsert = new EntJButton("취소");
+		//this.tfNewDate = new EntJTextFieldForDate();
+		//this.btnInsert = new EntJButton("취소");
 		
 		this.tbAccountList = new EntJTable();
 		this.tbAccountList.entAddTableHeader("account_type_nm", "계좌유형", JLabel.CENTER, 50);
@@ -86,11 +80,12 @@ public class A02InquiryAccountDetail implements EntScreen {
 		
 		this.southPanel = new JPanel();
 		this.southPanel.setBackground(Color.WHITE);
+		//this.southPanel.setSize(800, 300);
 		this.southPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		this.southPanel.add(cbAccountType);
+		//this.southPanel.add(cbAccountType);
 		//tfRemarks.addPanel(this.southPanel);
-		//this.southPanel.add(lbNewDate);
+		this.southPanel.add(lbNewDate);
 		//tfNewDate.addPanel(this.southPanel);
 		//this.southPanel.add(lbAmount);
 		//tfAmount.addPanel(this.southPanel);
@@ -103,9 +98,18 @@ public class A02InquiryAccountDetail implements EntScreen {
 		
 		this.centerPanel.add(BorderLayout.CENTER, new JScrollPane(tbAccountList));
 		
+	}
+	
+	
+	public String display() {
+		// TODO Auto-generated method stub
+		return "A02InquiryAccountDetail screen.";
+	}
+
+	public void initScreen()
+	{
 		this.mainFrame.getContentPane().add(BorderLayout.SOUTH, this.southPanel);
 		this.mainFrame.getContentPane().add(centerPanel, BorderLayout.CENTER);
-		
 	}
 	
 

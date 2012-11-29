@@ -3,11 +3,15 @@ package com.emflant.accounting.screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import com.emflant.accounting.screen.component.EntJTable;
 import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
 import com.emflant.accounting.screen.component.EntJTextFieldForDate;
 import com.emflant.accounting.screen.component.EntJTextFieldForRemarks;
+import com.emflant.accounting.transaction.A01Search;
 
 @Component
 public class A01RegisterAccount implements EntScreen {
@@ -27,6 +32,8 @@ public class A01RegisterAccount implements EntScreen {
 	
 	@Autowired
 	private JFrame mainFrame;
+	@Autowired
+	private A01Search a01Search;
 	//@Autowired
 	//private SqlSession session;
 	
@@ -50,20 +57,7 @@ public class A01RegisterAccount implements EntScreen {
 	
 	
 	public A01RegisterAccount(){
-		logger.info("constructor");
-
-	}
-
-	
-	public void initScreen()
-	{
-		//logger.info("session : "+session);
-		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
-		//logger.info("result : "+this.tbAccountList);
-		logger.info("call initScreen : "+testwe);
 		
-		
-
 		this.tfRemarks = new EntJTextFieldForRemarks();
 		this.cbAccountType = new EntJComboBox();
 		this.lbAmount = new JLabel("금액");
@@ -102,8 +96,26 @@ public class A01RegisterAccount implements EntScreen {
 		
 		this.centerPanel.add(BorderLayout.CENTER, new JScrollPane(tbAccountList));
 		
+	}
+
+	
+	public void initScreen()
+	{
+		//logger.info("session : "+session);
+		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
+		//logger.info("result : "+this.tbAccountList);
+		
 		this.mainFrame.getContentPane().add(BorderLayout.SOUTH, this.southPanel);
 		this.mainFrame.getContentPane().add(centerPanel, BorderLayout.CENTER);
+		
+		search();
+	}
+	
+	
+	public void search(){
+		List result = this.a01Search.getAccountsByUserId("emflant");
+		
+		DefaultTableModel tm = new DefaultTableModel();
 		
 	}
 	
