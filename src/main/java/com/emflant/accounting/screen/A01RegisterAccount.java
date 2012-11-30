@@ -113,8 +113,7 @@ public class A01RegisterAccount implements EntScreen {
 	
 	
 	public void search(){
-		List result = this.a01Search.getAccountsByUserId("emflant");
-		
+		//List result = this.a01Search.getAccountsByUserId("emflant");
 		DefaultTableModel tm = new DefaultTableModel();
 		
 	}
