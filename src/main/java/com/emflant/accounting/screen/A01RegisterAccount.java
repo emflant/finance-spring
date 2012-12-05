@@ -23,7 +23,7 @@ import com.emflant.accounting.screen.component.EntJTable;
 import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
 import com.emflant.accounting.screen.component.EntJTextFieldForDate;
 import com.emflant.accounting.screen.component.EntJTextFieldForRemarks;
-import com.emflant.accounting.transaction.A01Search;
+import com.emflant.accounting.service.A01Search;
 
 @Component
 public class A01RegisterAccount implements EntScreen {
