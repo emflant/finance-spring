@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,9 +36,6 @@ public class A01RegisterAccount implements EntScreen {
 	private JFrame mainFrame;
 	@Autowired
 	private A01Search a01Search;
-	//@Autowired
-	//private SqlSession session;
-	
 
 	private JPanel centerPanel;
 	private JPanel southPanel;
@@ -101,10 +100,6 @@ public class A01RegisterAccount implements EntScreen {
 	
 	public void initScreen()
 	{
-		//logger.info("session : "+session);
-		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
-		//logger.info("result : "+this.tbAccountList);
-		
 		this.mainFrame.getContentPane().add(BorderLayout.SOUTH, this.southPanel);
 		this.mainFrame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		
@@ -113,9 +108,11 @@ public class A01RegisterAccount implements EntScreen {
 	
 	
 	public void search(){
-		//List result = this.a01Search.getAccountsByUserId("emflant");
-		DefaultTableModel tm = new DefaultTableModel();
+		List result = this.a01Search.getAccountsByUserId("emflant");
 		
+		DefaultTableModel tm = convert(result);
+		
+		this.tbAccountList.entSetTableModel(tm);
 	}
 	
 	public String display() {
@@ -123,4 +120,50 @@ public class A01RegisterAccount implements EntScreen {
 		return "A01RegisterAccount screen.";
 	}
 
+	
+	
+	public DefaultTableModel convert(List list){
+		
+		DefaultTableModel tmResult = new DefaultTableModel();
+		
+		if(list.isEmpty()){
+			return tmResult;
+		}
+		
+		HashMap hm = (HashMap)list.get(0);
+		
+		int nColumnCnt = hm.size();
+		String[] columns = new String[nColumnCnt];
+		
+		Iterator<String> iter = hm.keySet().iterator();
+		
+		int k=0;
+		
+		while(iter.hasNext()){
+			String key = iter.next();
+			columns[k] = key;
+			k++;
+		}
+
+		tmResult.setColumnIdentifiers(columns);
+		
+		Object[] row = null;
+		
+	    for(int i=0;i<list.size();i++){
+	    	
+	    	hm = (HashMap)list.get(i);
+	    	
+	    	row = new String[nColumnCnt];
+
+	    	for(int j=0;j<nColumnCnt;j++){
+	    		
+	    		row[j] = ""+hm.get(columns[j]);
+	    	}
+	    	
+	    	tmResult.addRow(row);
+	    	
+	    }
+		
+		return tmResult;
+	}
 }
