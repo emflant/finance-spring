@@ -18,14 +18,14 @@ public class A01Search {
 	@Autowired
 	private SqlSession session;
 	
-	public List getAccountsByUserId(String userId){
+	public List getAccountsByUserId(String userId) {
 		
 		HashMap input = new HashMap();
 		input.put("user_id", userId);
 		
 		List result = session.selectList("A01Mapper.select01", input);
 		
-		logger.info(result);
+		//logger.info(result);
 		
 		return result;
 	}

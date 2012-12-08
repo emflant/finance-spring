@@ -2,8 +2,6 @@ package com.emflant.accounting;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.emflant.accounting.screen.A01RegisterAccount;
-import com.emflant.accounting.screen.Z00Login;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -25,10 +23,10 @@ public class ExampleConfigurationTests {
 		
 		String configLocation = "META-INF/spring/screen-context.xml";
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
-		A01RegisterAccount a01 = (A01RegisterAccount)context.getBean("a01RegisterAccount");
+		//A01RegisterAccount a01 = (A01RegisterAccount)context.getBean("a01RegisterAccount");
 
-		assertNotNull(a01);
-		logger.info(a01);
+		//assertNotNull(a01);
+		//logger.info(a01);
 	}
 	
 }

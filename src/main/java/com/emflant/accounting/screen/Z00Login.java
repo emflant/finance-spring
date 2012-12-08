@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -11,28 +12,23 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Z00Login {
+public class Z00Login implements ApplicationContextAware {
 	
 	private static final Logger logger = Logger.getLogger(Z00Login.class);
+	private Map<String, EntScreen> screens;
 	
 	@Autowired @Qualifier("mainFrame")
 	private JFrame frame;
 	
-	@Autowired @Qualifier("a01RegisterAccount")
-	private EntScreen a01;
-	@Autowired @Qualifier("a02InquiryAccountDetail")
-	private EntScreen a02;
-	
-	
 	public void init(){
-		//logger.info("기본화면 셋팅."+a01);
-		//this.frame = new JFrame();
-		logger.info("skdlfsdjkl");
 
 		
 		JMenuBar mb = new JMenuBar();
@@ -41,8 +37,8 @@ public class Z00Login {
 		JMenuItem menuItemA01 = new JMenuItem("[A01] 계좌등록");
 		JMenuItem menuItemA02 = new JMenuItem("[A02] 계좌내역조회");
 		
-		menuItemA01.addActionListener(new MenuItemListener(this.a01));
-		menuItemA02.addActionListener(new MenuItemListener(this.a02));
+		menuItemA01.addActionListener(new MenuItemListener("a01RegisterAccount"));
+		menuItemA02.addActionListener(new MenuItemListener("a02InquiryAccountDetail"));
 
 		screen.add(menuItemA01);
 		screen.add(menuItemA02);
@@ -58,20 +54,25 @@ public class Z00Login {
 	
 	class MenuItemListener implements ActionListener {
 		
-		private EntScreen screen;
+		private String screen;
 		
-		public MenuItemListener(EntScreen screen){
+		
+		public MenuItemListener(String screen){
 			this.screen = screen;
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
 			
+			EntScreen entScreen = screens.get(this.screen);
+
 			frame.getContentPane().removeAll();
-			logger.info(screen.display());
-			screen.initScreen();
+			logger.info(entScreen.display());
+			entScreen.initScreen();
 			frame.setVisible(true);
 			frame.getContentPane().repaint();
 		}
+
+
 		
 	}
 	
@@ -109,6 +110,15 @@ public class Z00Login {
 			
 		}
 		
+	}
+
+	/**
+	 * ApplicationContext 객체를 얻고 싶을 때 ApplicationContextAware 인터페이스를
+	 * 구현해서 멤버변수로 set 해주기만 하면 된다.
+	 */
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		this.screens = applicationContext.getBeansOfType(EntScreen.class);
 	}
 	
 

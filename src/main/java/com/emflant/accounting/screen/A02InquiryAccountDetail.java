@@ -53,7 +53,7 @@ public class A02InquiryAccountDetail implements EntScreen {
 		//logger.info("session : "+session);
 		//HashMap hm = (HashMap)session.selectOne("SqlSampleMapper.selectSampleMsSql", new HashMap<String, Object>());
 		//logger.info("result : "+this.tbAccountList);
-		logger.info("call initScreen : ");
+		//logger.info("call initScreen : ");
 		
 		
 

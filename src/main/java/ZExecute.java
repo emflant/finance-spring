@@ -26,7 +26,6 @@ public class ZExecute {
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
 		Z00Login zz = (Z00Login)context.getBean("z00Login");
 		
-
 		zz.init();
 	}
 
