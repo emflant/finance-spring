@@ -19,11 +19,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class Z00Login implements ApplicationContextAware {
 	
 	private static final Logger logger = Logger.getLogger(Z00Login.class);
 	private Map<String, EntScreen> screens;
+	private String currentScreen;
 	
 	@Autowired @Qualifier("mainFrame")
 	private JFrame frame;
@@ -62,6 +64,15 @@ public class Z00Login implements ApplicationContextAware {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
+
+			if(currentScreen != null && currentScreen.equals(this.screen)){
+				logger.info("같은 화면 skip.");
+				return;
+			} else {
+				logger.info("화면 : "+this.screen);
+			}
+			
+			currentScreen = this.screen;
 			
 			EntScreen entScreen = screens.get(this.screen);
 

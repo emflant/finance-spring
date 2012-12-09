@@ -52,9 +52,6 @@ public class A01RegisterAccount implements EntScreen {
 	private EntJButton btnInsert;
 	private EntJTable tbAccountList;
 	
-	private String testwe;
-	
-	
 	public A01RegisterAccount(){
 		
 		this.tfRemarks = new EntJTextFieldForRemarks();
