@@ -3,6 +3,7 @@ package com.emflant.accounting.screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -56,6 +57,28 @@ public class A01RegisterAccount implements EntScreen {
 		
 		this.tfRemarks = new EntJTextFieldForRemarks();
 		this.cbAccountType = new EntJComboBox();
+		
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		
+		HashMap<String, String> hm = new HashMap<String, String>();
+
+		hm.put("code", "01");
+		hm.put("code_name", "보통예금");
+		
+		HashMap<String, String> hm2 = new HashMap<String, String>();
+		hm2.put("code", "02");
+		hm2.put("code_name", "정기예금");
+		
+		HashMap<String, String> hm3 = new HashMap<String, String>();
+		hm3.put("code", "03");
+		hm3.put("code_name", "정기적금");
+		
+		list.add(hm);
+		list.add(hm2);
+		list.add(hm3);
+		
+		this.cbAccountType.setList(list);
+		
 		this.lbAmount = new JLabel("금액");
 		this.tfAmount = new EntJTextFieldForAmount(7);
 		this.lbCashAmount = new JLabel("현금");
@@ -79,7 +102,7 @@ public class A01RegisterAccount implements EntScreen {
 		this.southPanel.setBackground(Color.WHITE);
 		this.southPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		this.southPanel.add(cbAccountType);
+		this.cbAccountType.addPanel(this.southPanel);
 		tfRemarks.addPanel(this.southPanel);
 		this.southPanel.add(lbNewDate);
 		tfNewDate.addPanel(this.southPanel);
@@ -100,11 +123,19 @@ public class A01RegisterAccount implements EntScreen {
 		this.mainFrame.getContentPane().add(BorderLayout.SOUTH, this.southPanel);
 		this.mainFrame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		
+		setComboBox();
 		search();
 	}
 	
+	public void setComboBox(){
+		
+	}
 	
 	public void search(){
+		
+		List comboResult = this.a01Search.getComboBox();
+		this.cbAccountType.setList(comboResult);
+		
 		List result = this.a01Search.getAccountsByUserId("emflant");
 		this.tbAccountList.entSetTableModel(result);
 	}

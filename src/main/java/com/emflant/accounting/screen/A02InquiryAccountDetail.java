@@ -93,7 +93,7 @@ public class A02InquiryAccountDetail implements EntScreen {
 		this.tbAccountDetail.entAddTableHeader("remarks", "적요", JLabel.LEFT, 260);
 		
 		this.panel1.add(lbAccount);
-		this.panel1.add(cbAccount);
+		this.cbAccount.addPanel(panel1);
 		this.panel1.add(lbBalance);
 		tfBalance.addPanel(this.panel1);
 		this.panel1.add(lbTradeDate);

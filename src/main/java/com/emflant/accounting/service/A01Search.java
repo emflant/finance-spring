@@ -30,6 +30,10 @@ public class A01Search {
 		return result;
 	}
 	
-
+	public List getComboBox(){
+		
+		
+		return this.session.selectList("A01Mapper.select02");
+	}
 
 }

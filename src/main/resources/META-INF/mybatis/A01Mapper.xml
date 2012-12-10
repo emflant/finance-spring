@@ -21,5 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 FROM finance.account_master WHERE user_id = #{user_id}
 		 GROUP BY user_id
     </select>
- 
+     <select id="select02" parameterType="java.util.HashMap"
+            resultType="java.util.HashMap">
+		SELECT
+		      account_type AS "code"
+		    , account_type_name AS "code_name"
+		 FROM finance.account 
+
+    </select>
 </mapper>
