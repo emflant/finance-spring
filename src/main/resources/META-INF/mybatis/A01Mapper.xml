@@ -8,17 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="select01" parameterType="java.util.HashMap"
             resultType="java.util.HashMap">
 		SELECT
-		 (SELECT account_type_name FROM finance.account A WHERE A.account_type = T.account_type) as account_type_nm 
-		, (SELECT code_name FROM finance.code_detail WHERE code_type = '04' and code = account_status) as account_status_nm 
+		 (SELECT account_type_name FROM account A WHERE A.account_type = T.account_type) as account_type_nm 
+		, (SELECT code_name FROM code_detail WHERE code_type = '04' and code = account_status) as account_status_nm 
 		, user_id, account_type, account_status, format(balance,0) as format_balance, balance
 		, remarks, new_date
 		, DATE_FORMAT(new_date,'%Y-%m-%d') AS format_new_date 
-		FROM finance.account_master T WHERE user_id = #{user_id}
+		FROM account_master T WHERE user_id = #{user_id}
 		 UNION ALL 
 		SELECT '합계', '', user_id, '99' AS account_type, NULL AS account_status
 		, format(SUM(balance),0) as format_balance, SUM(balance) as balance
 		, '', '', '' 
-		 FROM finance.account_master WHERE user_id = #{user_id}
+		 FROM account_master WHERE user_id = #{user_id}
 		 GROUP BY user_id
     </select>
      <select id="select02" parameterType="java.util.HashMap"
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 		      account_type AS "code"
 		    , account_type_name AS "code_name"
-		 FROM finance.account 
-
+		 FROM account 
+		WHERE new_yn = 'Y'
     </select>
 </mapper>
