@@ -1,13 +1,11 @@
-package com.emflant.accounting.screen;
+package com.emflant.accounting.screen.component;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.sql.SQLException;
 import java.util.Map;
 
-import javax.sql.DataSource;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,14 +20,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import com.emflant.accounting.screen.component.EntDialog;
 import com.emflant.accounting.screen.component.EntDialog.EntMessageType;
 
 
+
 @Component
-public class Z00Login implements ApplicationContextAware {
+public class EntFrame implements ApplicationContextAware {
 	
-	private static final Logger logger = Logger.getLogger(Z00Login.class);
+	private static final Logger logger = Logger.getLogger(EntFrame.class);
 	private Map<String, EntScreen> screens;
 	private String currentScreen;
 	

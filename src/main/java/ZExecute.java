@@ -3,7 +3,7 @@ import javax.swing.UIManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.emflant.accounting.screen.Z00Login;
+import com.emflant.accounting.screen.component.EntFrame;
 
 
 public class ZExecute {
@@ -24,7 +24,7 @@ public class ZExecute {
 		
 		String configLocation = "META-INF/spring/app-context.xml";
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
-		Z00Login zz = (Z00Login)context.getBean("z00Login");
+		EntFrame zz = (EntFrame)context.getBean("z00Login");
 		
 		zz.init();
 		zz.loginDialog();

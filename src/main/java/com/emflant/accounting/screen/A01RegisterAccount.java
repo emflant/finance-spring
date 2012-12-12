@@ -26,6 +26,7 @@ import com.emflant.accounting.screen.component.EntJTable;
 import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
 import com.emflant.accounting.screen.component.EntJTextFieldForDate;
 import com.emflant.accounting.screen.component.EntJTextFieldForRemarks;
+import com.emflant.accounting.screen.component.EntScreen;
 import com.emflant.accounting.service.A01Search;
 
 @Component

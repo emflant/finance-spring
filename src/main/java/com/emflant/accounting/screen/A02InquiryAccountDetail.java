@@ -18,6 +18,7 @@ import com.emflant.accounting.screen.component.EntJComboBox;
 import com.emflant.accounting.screen.component.EntJTable;
 import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
 import com.emflant.accounting.screen.component.EntJTextFieldForDate;
+import com.emflant.accounting.screen.component.EntScreen;
 
 
 @Component
