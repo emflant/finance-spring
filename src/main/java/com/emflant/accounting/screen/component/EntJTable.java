@@ -5,18 +5,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import org.apache.log4j.Logger;
+
 
 public class EntJTable extends JTable {
+	
+	private static final Logger logger = Logger.getLogger(EntJTable.class);
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -132,7 +133,7 @@ public class EntJTable extends JTable {
 			columns[k] = key;
 			k++;
 		}
-
+		
 		tmResult.setColumnIdentifiers(columns);
 		
 		Object[] row = null;

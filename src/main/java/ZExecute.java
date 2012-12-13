@@ -24,7 +24,7 @@ public class ZExecute {
 		
 		String configLocation = "META-INF/spring/app-context.xml";
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
-		EntFrame zz = (EntFrame)context.getBean("z00Login");
+		EntFrame zz = (EntFrame)context.getBean("entFrame");
 		
 		zz.init();
 		zz.loginDialog();

@@ -88,6 +88,7 @@ public class EntDialog {
 				, "확인", JOptionPane.OK_CANCEL_OPTION);
 	}
 	
+	
 	public String showInputDialog(JFrame frame){
 		
 		StringBuffer sb = new StringBuffer(1024);

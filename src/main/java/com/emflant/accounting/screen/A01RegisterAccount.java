@@ -18,8 +18,11 @@ import javax.swing.table.TableModel;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.emflant.accounting.common.EntBusiness;
+import com.emflant.accounting.common.EntProcessServices;
 import com.emflant.accounting.screen.component.EntJButton;
 import com.emflant.accounting.screen.component.EntJComboBox;
 import com.emflant.accounting.screen.component.EntJTable;
@@ -27,7 +30,6 @@ import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
 import com.emflant.accounting.screen.component.EntJTextFieldForDate;
 import com.emflant.accounting.screen.component.EntJTextFieldForRemarks;
 import com.emflant.accounting.screen.component.EntScreen;
-import com.emflant.accounting.service.A01Search;
 
 @Component
 public class A01RegisterAccount implements EntScreen {
@@ -37,7 +39,7 @@ public class A01RegisterAccount implements EntScreen {
 	@Autowired
 	private JFrame mainFrame;
 	@Autowired
-	private A01Search a01Search;
+	private EntProcessServices processServices;
 
 	private JPanel centerPanel;
 	private JPanel southPanel;
@@ -56,30 +58,10 @@ public class A01RegisterAccount implements EntScreen {
 	
 	public A01RegisterAccount(){
 		
+		logger.info("123");
+		
 		this.tfRemarks = new EntJTextFieldForRemarks();
 		this.cbAccountType = new EntJComboBox();
-		
-		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
-		
-		HashMap<String, String> hm = new HashMap<String, String>();
-
-		hm.put("code", "01");
-		hm.put("code_name", "보통예금");
-		
-		HashMap<String, String> hm2 = new HashMap<String, String>();
-		hm2.put("code", "02");
-		hm2.put("code_name", "정기예금");
-		
-		HashMap<String, String> hm3 = new HashMap<String, String>();
-		hm3.put("code", "03");
-		hm3.put("code_name", "정기적금");
-		
-		list.add(hm);
-		list.add(hm2);
-		list.add(hm3);
-		
-		this.cbAccountType.setList(list);
-		
 		this.lbAmount = new JLabel("금액");
 		this.tfAmount = new EntJTextFieldForAmount(7);
 		this.lbCashAmount = new JLabel("현금");
@@ -134,11 +116,24 @@ public class A01RegisterAccount implements EntScreen {
 	
 	public void search(){
 		
-		List comboResult = this.a01Search.getComboBox();
+		//List comboResult = this.a01Search.getComboBox();
+		//this.cbAccountType.setList(comboResult);
+		
+		//List result = this.a01Search.getAccountsByUserId("emflant");
+		//this.tbAccountList.entSetTableModel(result);
+		
+		EntBusiness business = new EntBusiness();
+
+		business.addTransaction("A0101");
+		business.addTransaction("A0102");
+		
+		this.processServices.doBusinessOpsOneTransaction(business);
+		List result = (List)business.getTransaction(0).getResult(0);
+		this.tbAccountList.entSetTableModel(result);
+		List comboResult = (List)business.getTransaction(1).getResult(0);
 		this.cbAccountType.setList(comboResult);
 		
-		List result = this.a01Search.getAccountsByUserId("emflant");
-		this.tbAccountList.entSetTableModel(result);
+
 	}
 	
 	public String display() {

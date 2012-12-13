@@ -21,7 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 FROM account_master WHERE user_id = #{user_id}
 		 GROUP BY user_id
     </select>
-     <select id="select02" parameterType="java.util.HashMap"
+    
+    <select id="select02" parameterType="java.util.HashMap"
             resultType="java.util.HashMap">
 		SELECT
 		      account_type AS "code"
@@ -29,4 +30,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 FROM account 
 		WHERE new_yn = 'Y'
     </select>
+    
 </mapper>

@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import com.emflant.accounting.common.EntCommon;
 import com.emflant.accounting.screen.component.EntDialog.EntMessageType;
 
 
@@ -36,6 +37,9 @@ public class EntFrame implements ApplicationContextAware {
 	
 	@Autowired
 	private PooledDataSource dataSource;
+	
+	@Autowired
+	private EntCommon common;
 	
 	public void init(){
 		
@@ -143,18 +147,28 @@ public class EntFrame implements ApplicationContextAware {
 		EntDialog message = new EntDialog(EntMessageType.INFORMATION, "로그인정보");
 		String ip = message.showInputDialog(frame);
 		
+		EntDialog messageResult = null;
+		
 		//finance 라고 입력하면 real DB 로 접속한다.
 		if(ip != null && ip.equals("finance")){
 			this.dataSource.setUrl("jdbc:mysql://localhost/finance");
 			logger.info("운영 DB 접속.");
+			messageResult = new EntDialog(EntMessageType.INFORMATION, "운영 DB 접속.");
 			this.frame.setTitle("[Real]");
 		} 
 		//그 외의 것들은 테스트DB로 접속한다.
 		else {
 			this.dataSource.setUrl("jdbc:mysql://localhost/finance_test");
 			logger.info("테스트 DB 접속.");
+			messageResult = new EntDialog(EntMessageType.INFORMATION, "테스트 DB 접속.");
 			this.frame.setTitle("[Test]");
 		}
+		
+		messageResult.showMessageDialog(frame);
+		
+		
+		//공통정보 셋팅.
+		this.common.setUser("emflant");
 	}
 
 }
