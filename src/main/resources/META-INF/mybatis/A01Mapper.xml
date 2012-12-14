@@ -31,4 +31,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE new_yn = 'Y'
     </select>
     
+    <insert id="insert01">
+    	INSERT INTO code_detail
+		(code_type,
+		code,
+		code_name,
+		use_yn,
+		remarks)
+		VALUES
+		(
+		'test_type',
+		'01',
+		'test_name',
+		'Y',
+		null
+		)
+    	
+    	
+    </insert>
+    
 </mapper>

@@ -9,6 +9,9 @@ public class EntBusiness {
 	
 	private List<EntTransaction> transactions;
 	
+	private boolean complete;
+	private String message;
+	
 	public EntBusiness(){
 		this.transactions = new ArrayList<EntTransaction>();
 	}
@@ -31,6 +34,38 @@ public class EntBusiness {
 	
 	public int size(){
 		return this.transactions.size();
+	}
+
+
+
+	
+	public void clearResults(){
+		
+		for(int i=0;i<this.transactions.size();i++){
+			EntTransaction transaction = this.transactions.get(i);
+			transaction.clearResult();
+		}
+		
+	}
+
+
+	public boolean isComplete() {
+		return complete;
+	}
+
+
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
+
+
+	public String getMessage() {
+		return message;
+	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

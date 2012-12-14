@@ -47,11 +47,11 @@ public class A02InquiryAccountDetail implements EntScreen {
 	private JLabel lbTradeDate;
 	private EntJTextFieldForDate tfTradeDate;
 	
-	
 	private EntJTable tbAccountDetail;
 	
 	
 	public A02InquiryAccountDetail(){
+		
 		this.northPanel = new JPanel();
 		this.northPanel.setBackground(Color.WHITE);
 		this.northPanel.setLayout(new BoxLayout(this.northPanel, BoxLayout.Y_AXIS));

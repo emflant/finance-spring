@@ -25,8 +25,9 @@ public class A0101SearchAccountsByUserId implements EntService {
 	
 	public void service(EntTransaction transaction) {
 		List result = session.selectList("A01Mapper.select01", common.getUser());
-		
 		transaction.addResult(result);
 	}
+	
+	
 	
 }

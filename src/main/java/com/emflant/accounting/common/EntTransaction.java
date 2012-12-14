@@ -46,5 +46,9 @@ public class EntTransaction {
 	public void setTransactionCode(String transactionCode) {
 		this.transactionCode = transactionCode;
 	}
+	
+	public void clearResult(){
+		this.results.clear();
+	}
 
 }

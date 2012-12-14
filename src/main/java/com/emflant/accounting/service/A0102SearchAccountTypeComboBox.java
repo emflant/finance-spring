@@ -24,7 +24,6 @@ public class A0102SearchAccountTypeComboBox implements EntService {
 
 	public void service(EntTransaction transaction) {
 		List result = this.session.selectList("A01Mapper.select02");
-		logger.info(result);
 		transaction.addResult(result);
 	}
 }
