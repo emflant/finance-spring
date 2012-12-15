@@ -7,7 +7,7 @@
 
 	<description>finance project(spring-framework version)</description>
 
-	<bean name="mainFrame" class="javax.swing.JFrame"></bean>
+	<bean name="mainFrame" class="com.emflant.accounting.screen.component.EntFrame"></bean>
 	
 	<!--  MY-SQL 일때 -->
 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">

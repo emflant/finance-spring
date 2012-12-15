@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.emflant.accounting.screen.component.EntFrame;
 import com.emflant.accounting.screen.component.EntJComboBox;
 import com.emflant.accounting.screen.component.EntJTable;
 import com.emflant.accounting.screen.component.EntJTextFieldForAmount;
@@ -27,7 +27,7 @@ public class A02InquiryAccountDetail implements EntScreen {
 	private static final Logger logger = Logger.getLogger(A02InquiryAccountDetail.class);
 
 	@Autowired
-	private JFrame mainFrame;
+	private EntFrame mainFrame;
 
 
 

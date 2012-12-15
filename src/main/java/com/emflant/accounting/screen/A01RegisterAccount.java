@@ -25,6 +25,7 @@ import com.emflant.accounting.common.EntBusiness;
 import com.emflant.accounting.common.EntProcessServices;
 import com.emflant.accounting.screen.component.EntDialog;
 import com.emflant.accounting.screen.component.EntDialog.EntMessageType;
+import com.emflant.accounting.screen.component.EntFrame;
 import com.emflant.accounting.screen.component.EntJButton;
 import com.emflant.accounting.screen.component.EntJComboBox;
 import com.emflant.accounting.screen.component.EntJTable;
@@ -39,7 +40,7 @@ public class A01RegisterAccount implements EntScreen {
 	private static final Logger logger = Logger.getLogger(A01RegisterAccount.class);
 	
 	@Autowired
-	private JFrame mainFrame;
+	private EntFrame mainFrame;
 	@Autowired
 	private EntProcessServices processServices;
 
@@ -113,36 +114,22 @@ public class A01RegisterAccount implements EntScreen {
 	public void setComboBox(){
 		EntBusiness business = new EntBusiness();
 		business.addTransaction("A0102");
-		this.processServices.doBusinessOpsOneTransaction(business);
+		this.mainFrame.doBusinessOpsOneTransaction(business);
 		List comboResult = (List)business.getTransaction(0).getResult(0);
 		this.cbAccountType.setList(comboResult);
 	}
 	
 	public void search(){
 		
-		//List comboResult = this.a01Search.getComboBox();
-		//this.cbAccountType.setList(comboResult);
-		
-		//List result = this.a01Search.getAccountsByUserId("emflant");
-		//this.tbAccountList.entSetTableModel(result);
-		
 		EntBusiness business = new EntBusiness();
 		business.addTransaction("A0101");
 		
-		this.processServices.doBusinessOpsOneTransaction(business);
-		
+		this.mainFrame.doBusinessOpsOneTransaction(business);
+
 		if(business.isComplete()){
 			List result = (List)business.getTransaction(0).getResult(0);
 			this.tbAccountList.entSetTableModel(result);
-		} else {
-			EntDialog dialog = new EntDialog(EntMessageType.ERROR, 
-					business.getMessage());
-			
-			dialog.showMessageDialog(mainFrame);
 		}
-		
-
-		
 
 	}
 	
