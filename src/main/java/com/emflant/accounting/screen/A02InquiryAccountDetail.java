@@ -108,7 +108,6 @@ public class A02InquiryAccountDetail implements EntScreen {
 	
 	
 	public String display() {
-		// TODO Auto-generated method stub
 		return "A02InquiryAccountDetail screen.";
 	}
 

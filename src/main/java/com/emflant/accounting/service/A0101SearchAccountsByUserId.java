@@ -24,10 +24,10 @@ public class A0101SearchAccountsByUserId implements EntService {
 	private EntCommon common;
 	
 	public void service(EntTransaction transaction) {
-		List result = session.selectList("A01Mapper.select01", common.getUser());
+		List result = session.selectList("A01Mapper.select01"
+				, this.common.getUser());
 		transaction.addResult(result);
 	}
-	
-	
+
 	
 }

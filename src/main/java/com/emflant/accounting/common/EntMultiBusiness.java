@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Deprecated
-public class EntBusiness {
-	
+public class EntMultiBusiness {
 	
 	private List<EntTransaction> transactions;
 	
 	private boolean complete;
 	private String message;
 	
-	public EntBusiness(){
+	public EntMultiBusiness(){
 		this.transactions = new ArrayList<EntTransaction>();
 	}
 	
@@ -68,5 +66,4 @@ public class EntBusiness {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
 }

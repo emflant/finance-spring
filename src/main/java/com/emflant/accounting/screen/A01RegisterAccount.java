@@ -3,28 +3,20 @@ package com.emflant.accounting.screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Set;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.emflant.accounting.common.EntBusiness;
 import com.emflant.accounting.common.EntProcessServices;
-import com.emflant.accounting.screen.component.EntDialog;
-import com.emflant.accounting.screen.component.EntDialog.EntMessageType;
+import com.emflant.accounting.common.EntSingleBusiness;
 import com.emflant.accounting.screen.component.EntFrame;
 import com.emflant.accounting.screen.component.EntJButton;
 import com.emflant.accounting.screen.component.EntJComboBox;
@@ -70,6 +62,7 @@ public class A01RegisterAccount implements EntScreen {
 		this.lbNewDate = new JLabel("신규일자");
 		this.tfNewDate = new EntJTextFieldForDate();
 		this.btnInsert = new EntJButton("등록");
+		this.btnInsert.addActionListener(new btnInsertListener());
 		
 		this.tbAccountList = new EntJTable();
 		this.tbAccountList.entAddTableHeader("account_type_nm", "계좌유형", JLabel.CENTER, 50);
@@ -112,31 +105,37 @@ public class A01RegisterAccount implements EntScreen {
 	}
 	
 	public void setComboBox(){
-		EntBusiness business = new EntBusiness();
-		business.addTransaction("A0102");
+		EntSingleBusiness business = new EntSingleBusiness("A0102");
 		this.mainFrame.doBusinessOpsOneTransaction(business);
-		List comboResult = (List)business.getTransaction(0).getResult(0);
+		
+		List comboResult = (List)business.getResult(0);
 		this.cbAccountType.setList(comboResult);
 	}
 	
 	public void search(){
 		
-		EntBusiness business = new EntBusiness();
-		business.addTransaction("A0101");
-		
+		EntSingleBusiness business = new EntSingleBusiness("A0101");
 		this.mainFrame.doBusinessOpsOneTransaction(business);
 
 		if(business.isComplete()){
-			List result = (List)business.getTransaction(0).getResult(0);
+			List result = (List)business.getResult(0);
 			this.tbAccountList.entSetTableModel(result);
 		}
 
 	}
 	
 	public String display() {
-		// TODO Auto-generated method stub
 		return "A01RegisterAccount screen.";
 	}
 
+	
+	class btnInsertListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			EntSingleBusiness business = new EntSingleBusiness("A0103");
+			mainFrame.doBusinessOpsOneTransaction(business);
+		}
+		
+	}
 	
 }
